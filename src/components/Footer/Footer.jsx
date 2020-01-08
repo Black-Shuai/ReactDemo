@@ -9,7 +9,7 @@ export default class Footer extends React.Component{
         }
         return (
             <div style={style}>
-                针对辅助教学系统所作的前端，版权归于私人所有
+                模仿ant design pro页面，针对react学习的前端，版权归于私人所有
             </div>
         );
     }

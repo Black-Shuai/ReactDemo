@@ -1,7 +1,6 @@
 import React from 'react'
 import { Form, Input, Button, Checkbox,Card,Icon } from 'antd';
 import {api_login} from "../api/api_Login";
-// import Axios from "axios";
 
 class Login extends React.Component{
 
@@ -12,20 +11,11 @@ class Login extends React.Component{
     }
     login=async (userInfo)=>{
          api_login(userInfo,true).then((res)=>{
-             if (res.data.code!==1){
+             if (res.code!==1){
+                 sessionStorage.setItem('code',res.code)
                  this.props.history.push('/home')
              }
          })
-        // await new Promise((resolve,reject)=>{
-        //     Axios({
-        //         method:'post',
-        //         url:'http://120.25.122.173:8810/api/login',
-        //         data:userInfo
-        //     }).then(res=>{
-        //         if(res.data.code!==1)
-        //         this.props.history.push('/home')
-        //     })
-        // })
     }
     render() {
         const { getFieldDecorator } = this.props.form;
@@ -34,8 +24,6 @@ class Login extends React.Component{
             height:'100vh',
             backgroundImage:"url("+require("../resource/assets/月亮.jpg")+")",
             display:"flex",
-            // top:"20%",
-            // alignItems:"center",
             justifyContent:"center"
         }
         return (

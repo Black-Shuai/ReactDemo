@@ -10,19 +10,13 @@ var instance = axios.create({
 });
 // /api/getUserById
 
-
-// 请求拦截器, 进行一个全局loading  加载，这种情况下所有的接口请求前 都会加载一个loading
-
 /**
  * 添加请求拦截器 ，意思就是发起请求接口之前做什么事，一般都会发起加载一个loading
  * */
-
 //  如果不想每个接口都加载loading ，就注释掉请求前拦截器,在http这个类中处理
-
 instance.interceptors.request.use(
     config => {
         // 在发送请求之前做些什么（... 这里写你的展示loading的逻辑代码 ）
-        isShowLoading(true);
         // 获取token，配置请求头
         // const TOKEN = localStorage.getItem('Token')
         // 演示的token（注意配置请求头，需要后端做cros跨域处理，我这里自己前端配的跨域）
@@ -55,8 +49,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
     function(response) {
         // 对响应数据做点什么
-        isShowLoading(false);
-        console.log(response)
+        // console.log(response)
         // 根据你们家的后端定义请求过期后返回的参数，处理token过期问题
         // 我这个接口木有token啊，这里演示下
         // 判断
@@ -70,29 +63,14 @@ instance.interceptors.response.use(
 
             //  todo...
         }
-        return response;
+        return response.data;
     },
     function(error) {
         // 对响应错误做点什么
-        isShowLoading(false);
         return Promise.reject(error);
     }
 );
 
-// 如果与你配合的ui中，有loading组件的话，你直接用它的就可以了
-
-// to do...
-/**
- * 是否开启loading
- * @param {*} payload { type:Boolean }
- */
-
-function isShowLoading(payload) {
-// 获取dom节点
-    const loading = document.getElementById('loading');
-    payload ? loading.style.display = 'block' : loading.style.display = 'none';
-
-}
 
 /**
  * 使用es6中的类，进行简单封装
@@ -104,20 +82,16 @@ class http {
      * axios get 请求封装
      * @param {*} url 接口地址
      * @param {*} params 接口参数？可选 { type:object }
-     * @param {*} isShow 接口请求前是否展示loading
      */
     static async get(url, params, isShow = false) {
-        isShowLoading(isShow)
         return await instance.get(url, {params})
     }
     /**
      * axios post 请求封装
      * @param {*} url 接口地址
      * @param {*} params 接口参数？可选 { type:object }
-     * @param {*} isShow 接口请求前是否展示loading
      */
     static async post(url, params, isShow = false) {
-        isShowLoading(isShow)
         return await instance.post(url, params);
     }
 }
