@@ -3,8 +3,18 @@ import {Row, Col} from 'antd';
 import Footer from '../../components/Footer/Footer'
 import Header from '../../components/Header/Header'
 import NavLeft from '../../components/NavLeft/NavLeft'
+import {withRouter} from "react-router-dom";//给组件属性props提供history方法
 import './Home.less'
-export default class Home extends React.Component{
+class Home extends React.Component{
+    componentDidMount(){
+        this.getHistoryRouter()
+    }
+    getHistoryRouter=()=>{
+        if(sessionStorage.getItem('path')==='login'){//由于找不到好的刷新方法，每次f5都转到重定向的页面，所以只能手动重定向
+            sessionStorage.removeItem('path')
+            this.props.history.push('/main')
+        }
+    }
     render() {
         return(
                 <Row className="container">
@@ -24,3 +34,4 @@ export default class Home extends React.Component{
         );
     }
 }
+export default withRouter(Home);

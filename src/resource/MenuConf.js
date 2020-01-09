@@ -21,10 +21,7 @@ export default [
             }
         ]
     },{
-        title: '视频上传',
-        key: '/video',
-    },{
-        title:'多个问价上传',
-        key:'/MultiUpload'
+        title: '文件上传',
+        key: '/upload',
     }
 ]

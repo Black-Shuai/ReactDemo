@@ -83,7 +83,7 @@ class http {
      * @param {*} url 接口地址
      * @param {*} params 接口参数？可选 { type:object }
      */
-    static async get(url, params, isShow = false) {
+    static async get(url, params) {
         return await instance.get(url, {params})
     }
     /**
@@ -91,7 +91,7 @@ class http {
      * @param {*} url 接口地址
      * @param {*} params 接口参数？可选 { type:object }
      */
-    static async post(url, params, isShow = false) {
+    static async post(url, params) {
         return await instance.post(url, params);
     }
 }

@@ -13,6 +13,9 @@ export default class NavLeft extends React.Component{
         //     menuTreeNode
         // })
         this.selectMenu(sessionStorage.getItem('code'))
+        this.setState({
+            videoCard:"this.getmessage()"
+        })
     }
     //根据权限选择菜单
     selectMenu=(data)=>{

@@ -13,6 +13,7 @@ class Login extends React.Component{
          api_login(userInfo,true).then((res)=>{
              if (res.code!==1){
                  sessionStorage.setItem('code',res.code)
+                 sessionStorage.setItem('path','login')
                  this.props.history.push('/home')
              }
          })
