@@ -2,6 +2,10 @@ import React from 'react'
 import { Row, Col, List, Typography, Button, Menu, Icon, Divider } from 'antd'
 import FreeScrollBar from 'react-free-scrollbar';
 import echarts from 'echarts'
+import { DatePicker } from 'antd';
+
+const { RangePicker } = DatePicker;
+
 export default class SaleNumber extends React.Component {
     state = {
         current: 'mail',
@@ -61,6 +65,9 @@ export default class SaleNumber extends React.Component {
         myChart.setOption(option);
         window.onresize = myChart.resize
     }
+    onChange = (date, dateString) => {
+        // console.log(date, dateString);//输出选择后的时间
+    }
     render() {
         const data = [
             { name: 'Racing car sprays burning fuel into crowd.', time: '2019' },
@@ -91,16 +98,20 @@ export default class SaleNumber extends React.Component {
                             </Menu.Item>
                         </Menu>
                     </Col>
-                    <Col span={10}>
-                        <Button>今日</Button>
+                    <Col style={{ textAlign: "right" }} span={10}>
+                        <Button style={{ border: "aliceblue" }}>今日</Button>
+                        <Button style={{ border: "aliceblue" }}>本周</Button>
+                        <Button style={{ border: "aliceblue" }}>本月</Button>
+                        <Button style={{ border: "aliceblue" }}>今年</Button>
+                        <RangePicker style={{ width: "45%" }} onChange={this.onChange} />
                         <Divider style={{ marginTop: 16 }} />
                     </Col>
                 </Row>
                 <Row>
-                    <Col span={16}>
+                    <Col span={14}>
                         <div id='sale' style={{ height: 400 }} />
                     </Col>
-                    <Col span={8} style={{ height: 330 }}>
+                    <Col span={10} style={{ height: 330 }}>
                         <h3 style={{ marginBottom: 16 }}>门店销售额排名</h3>
                         <FreeScrollBar>
                             <List
