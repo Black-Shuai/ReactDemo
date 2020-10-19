@@ -5,7 +5,7 @@ import axios from 'axios';
  * 自定义实例默认值
  */
 var instance = axios.create({
-    baseURL: 'http://120.25.122.173:8810', // 公共接口url（如果有多个的公共接口的话，需要处理）
+    baseURL: 'http://127.0.0.1:8088', // 公共接口url（如果有多个的公共接口的话，需要处理）
     timeout: 3000, // 请求超时
 });
 // /api/getUserById

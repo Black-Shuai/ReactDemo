@@ -24,7 +24,7 @@ class Home extends React.Component{
                     <Col span={20}>
                         <Col className="header"><Header/></Col>
                         <Col className="main">
-                            <div style={{height:"100%",width:"100%"}}>
+                            <div style={{height:"82vh",width:"100%"}}>
                                 { this.props.children }
                             </div>
                         </Col>
